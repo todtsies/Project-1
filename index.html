@@ -21,22 +21,57 @@
   <header class="bg-success px-1 py-2 mb-3 text-white">
     <div class="container d-flex justify-content-between aligh-items-center ">
       <h1>FOO</h1>
+      <div id="toggle-buttons" class="d-flex align-items-center"> 
+        <button class="btn btn-outline-light">Food!</button>
+        <button class="btn btn-outline-light">Drinks!</button>
+      </div>
     </div>
   </header>
 
-  <div class="container">
-    <div class="row">
+  <!-- Main Content Container -->
+  <main>
+    <div class="container">
+      <div class="row">
+  
+        <!-- User Inputs -->
+        <div class="col-12 col-sm-4 col-xl-3">
+          <form>
+            <label for="ingredient-1" class="mb-1">Choose an Ingredient:</label>
+            <input type="text" id="ingredient-1" class="form-control mb-3">
 
-      <div class="col-12 col-sm-4 col-xl-3 bg-danger">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit quas asperiores necessitatibus numquam quae, hic laboriosam dolor, dolorem eius illum perferendis? 
+            <p class="my-2">OR:</p>
+
+            <label for="category" class="mb-1">Choose a Category:</label>
+            <select id="category" class="form-control mb-3">
+              <option selected>Choose...</option>
+              <option id="category-beef">Beef</option>
+              <option id="category-breakfast">Breakfast</option>
+              <option id="category-chicken">Chicken</option>
+              <option id="category-dessert">Dessert</option>
+              <option id="category-goat">Goat</option>
+              <option id="category-lamb">Lamb</option>
+              <option id="category-misc">Miscellaneous</option>
+              <option id="category-pasta">Pasta</option>
+              <option id="category-pork">Pork</option>
+              <option id="category-seafood">Seafood</option>
+              <option id="category-side">Side</option>
+              <option id="category-starter">Starter</option>
+              <option id="category-vegan">Vegan</option>
+              <option id="category-vegetarian">Vegetarian</option>
+            </select>
+
+            <button class="btn btn-success mx-auto">Get Recipes!</button>
+          </form>
+        </div>
+  
+        <div class="col-12 col-sm-8 col-xl-9 bg-info">
+          
+        </div>
+  
       </div>
-
-      <div class="col-12 col-sm-8 col-xl-9 bg-info">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi, suscipit porro illo nihil enim esse, architecto aut temporibus cumque sint quasi ullam fugit. Reprehenderit expedita ex quam veritatis animi obcaecati totam quas quisquam minima, possimus nulla quod a repellendus, voluptas doloremque recusandae incidunt. Sint iusto repellendus sed, eligendi magnam reprehenderit incidunt quae beatae unde doloribus dolore neque aliquam, facere necessitatibus!
-      </div>
-
     </div>
-  </div>
+  </main>
+
 
   <!-- Footer -->
   <footer class="bg-success text-center py-2 mt-3">
