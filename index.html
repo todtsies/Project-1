@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="assets/style.css">
 
 </head>
-<body>
+<body class="vh-100">
   
   <!-- Header -->
   <header class="bg-success px-1 py-2 mb-3 text-white">
@@ -30,20 +30,20 @@
 
   <!-- Main Content Container -->
   <main>
-    <div class="container">
+    <div id="content" class="container">
       <div class="row">
   
-        <!-- User Inputs -->
-        <div class="col-12 col-sm-4 col-xl-3">
-          <form>
+        <!-- Sidebar: Form -->
+        <div class="col-12 col-sm-4 col-xl-3 bg-light">
+          <form class="mb-3">
             <label for="ingredient-1" class="mb-1">Choose an Ingredient:</label>
             <input type="text" id="ingredient-1" class="form-control mb-3">
 
             <p class="my-2">OR:</p>
 
-            <label for="category" class="mb-1">Choose a Category:</label>
+            <label for="category" class="mb-1">Select a Category:</label>
             <select id="category" class="form-control mb-3">
-              <option selected>Choose...</option>
+              <option selected>Select...</option>
               <option id="category-beef">Beef</option>
               <option id="category-breakfast">Breakfast</option>
               <option id="category-chicken">Chicken</option>
@@ -60,23 +60,66 @@
               <option id="category-vegetarian">Vegetarian</option>
             </select>
 
-            <button class="btn btn-success mx-auto">Get Recipes!</button>
+            <button id="search" class="btn btn-success mx-auto">Get Recipes!</button>
           </form>
         </div>
   
-        <div class="col-12 col-sm-8 col-xl-9 bg-info">
+
+        <!-- Results -->
+        <div class="col-12 col-sm-8 col-xl-9">
           
+          <div class="card">
+
+            <!-- API Response: Title -->
+            <div class="card-header list-group-item-success">
+              <p id="title" class="h3 m-0">Teriyaki Chicken Casserole</p>
+            </div>
+
+            <div class="row card-body">
+
+              <!-- API Response: Image -->
+              <div class="col-12 col-lg-6">
+                <img id="thumbnail" src="https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg" alt="" class="img-fluid rounded">
+              </div>
+
+              <!-- API Response: Text Data -->
+              <div class="col-12 col-lg-6">
+
+                <!-- API Response: Ingredients -->
+                <p class="text-success mb-1 mt-3 mt-lg-0 bold">Ingredients:</p>
+                <p id="ingredients">Soy Sauce, Water, Brown Sugar, Ground Ginger, Minced Garlic, Cornstarch, Chicken Breasts, Stir-Fry Vegetables, Brown Rice</p>
+
+                <!-- API Response: Cuisine -->
+                <p class="text-success mb-1 bold">Cuisine:</p>
+                <p id="area">American</p>
+
+                <!-- API Response: Instructions -->
+                <button 
+                  class="btn btn-success" 
+                  type="button" 
+                  data-toggle="collapse" 
+                  data-target="#instructions" 
+                  aria-expanded="false" 
+                  aria-controls="collapseExample">
+                  Show Instructions
+                </button>
+
+              </div>
+            </div>
+
+            <div id="instructions" class="collapse">
+              <div class="card-footer">
+                <p>
+                  Preheat oven to 350° F. Spray a 9x13-inch baking pan with non-stick spray. Combine soy sauce, ½ cup water, brown sugar, ginger and garlic in a small saucepan and cover. Bring to a boil over medium heat. Remove lid and cook for one minute once boiling. Meanwhile, stir together the corn starch and 2 tablespoons of water in a separate dish until smooth. Once sauce is boiling, add mixture to the saucepan and stir to combine. Cook until the sauce starts to thicken then remove from heat.Place the chicken breasts in the prepared pan. Pour one cup of the sauce over top of chicken. Place chicken in oven and bake 35 minutes or until cooked through. Remove from oven and shred chicken in the dish using two forks. 
+                  Meanwhile, steam or cook the vegetables according to package directions. Add the cooked vegetables and rice to the casserole dish with the chicken. Add most of the remaining sauce, reserving a bit to drizzle over the top when serving. Gently toss everything together in the casserole dish until combined. Return to oven and cook 15 minutes. Remove from oven and let stand 5 minutes before serving. Drizzle each serving with remaining sauce. Enjoy!
+                </p>
+              </div>
+            </div>
+          </div>          
         </div>
-  
       </div>
     </div>
   </main>
-
-
-  <!-- Footer -->
-  <footer class="bg-success text-center py-2 mt-3">
-    <p class="h6">Copyright 2021</p>
-  </footer>
 
 
   <!-- jQuery -->
@@ -87,6 +130,7 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
 
 </body>
 </html>
