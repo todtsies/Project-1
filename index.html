@@ -74,45 +74,25 @@
 
             <!-- API Response: Title -->
             <div class="card-header list-group-item-success">
-              <p id="title" class="h3 m-0">Teriyaki Chicken Casserole</p>
+              <p id="title" class="h3 m-0"></p>
             </div>
 
             <div class="row card-body">
 
               <!-- API Response: Image -->
               <div class="col-12 col-lg-6">
-                <img id="thumbnail" src="https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg" alt="" class="img-fluid rounded">
+                <img id="thumbnail" src="" alt="" class="img-fluid rounded">
               </div>
 
               <!-- API Response: Text Data -->
               <div class="col-12 col-lg-6">
 
                 <!-- API Response: Ingredients -->
-                <ul class="list-group list-group-flush mt-3 mt-lg-0 text-center text-lg-left">
-                  <li class="list-group-item text-success bold pt-0 pl-0">Ingredients:</li>
-                  <li class="list-group-item pl-0">3/4 cup soy sauce</li>
-                  <li class="list-group-item pl-0">1/2 cup water</li>
-                  <li class="list-group-item pl-0">1/4 cup brown Sugar</li>
-                  <li class="list-group-item pl-0">1/2 teaspoon ground ginger</li>
-                  <li class="list-group-item pl-0">1/2 teaspoon minced garlic</li>
-                  <li class="list-group-item pl-0">4 tablespoons cornstarch</li>
-                  <li class="list-group-item pl-0">2 chicken breasts</li>
-                  <li class="list-group-item pl-0">12 oz. stir-fry vegetables</li>
-                  <li class="list-group-item pl-0">3 cups brown rice</li>
-
-                  <!-- API Response: Recipe Source (if there is one) -->
-                  <li class="list-group-item pl-0">
-                    <a href="" class="d-block text-success bold">View Recipe Source</a>
-                  </li>
-
-                  <!-- API Response: Recipe Video (if there is one) -->
-                  <li class="list-group-item pl-0">
-                    <a href="" class="text-success bold">View Video</a>
-                  </li>
+                <ul id="recipe-info" class="list-group list-group-flush mt-3 mt-lg-0 text-center text-lg-left">
 
                   <!-- API Reponse: Button to collapse/expand instructions -->
                   <li class="list-group-item pl-0">
-                    <a href="" class="text-success bold" data-toggle="collapse" data-target="#instructions" aria-expanded="false" aria-controls="instructions">
+                    <a href="" class="text-success bold" data-toggle="collapse" data-target="#drawer" aria-expanded="false" aria-controls="drawer">
                       View Recipe Instructions
                     </a>
                   </li>
@@ -121,12 +101,9 @@
             </div>
 
             <!-- API Response: Recipe Instructions -->
-            <div id="instructions" class="collapse">
+            <div id="drawer" class="collapse">
               <div class="card-footer">
-                <p>
-                  Preheat oven to 350° F. Spray a 9x13-inch baking pan with non-stick spray. Combine soy sauce, ½ cup water, brown sugar, ginger and garlic in a small saucepan and cover. Bring to a boil over medium heat. Remove lid and cook for one minute once boiling. Meanwhile, stir together the corn starch and 2 tablespoons of water in a separate dish until smooth. Once sauce is boiling, add mixture to the saucepan and stir to combine. Cook until the sauce starts to thicken then remove from heat.Place the chicken breasts in the prepared pan. Pour one cup of the sauce over top of chicken. Place chicken in oven and bake 35 minutes or until cooked through. Remove from oven and shred chicken in the dish using two forks. 
-                  Meanwhile, steam or cook the vegetables according to package directions. Add the cooked vegetables and rice to the casserole dish with the chicken. Add most of the remaining sauce, reserving a bit to drizzle over the top when serving. Gently toss everything together in the casserole dish until combined. Return to oven and cook 15 minutes. Remove from oven and let stand 5 minutes before serving. Drizzle each serving with remaining sauce. Enjoy!
-                </p>
+                <p id="instructions"></p>
               </div>
             </div>
           </div>          
