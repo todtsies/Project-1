@@ -30,8 +30,26 @@ $(document).ready(function() {
         }
       }).then(function(response) {
         console.log(response);
+        displayRecipe(response);
+
+
       });
     });
+  }
+
+  function displayRecipe(recipe) {
+    $("#title").text(recipe.meals[0].strMeal)
+    $("#thumbnail").attr("src", recipe.meals[0].strMealThumb)
+    
+    if (recipe.meals[0].strYoutube) {
+        var li = $("<li>").addClass("list-group-item pl-0");
+        var a = $("<a>").addClass("text-success bold");
+        a.text("New Video");
+        a.attr("href", recipe.meals[0].strYoutube)
+        li.append(a);
+        $("#recipe-info").prepend(li);
+        
+    }
   }
 
 
