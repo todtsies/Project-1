@@ -1,5 +1,23 @@
 $(document).ready(function() {
 
+$(".button-left").ready(function() {
+ $("#food-side").show();
+ $("#drinks-side").hide();
+ $(".button-left").css({"background-color": "black", "color": "white"});
+ $(".button-right").css({"background-color": "gray", "color": "white"});
+ });
+$('.button-left').click(function() {
+ $('#food-side').show(500);
+ $('#drinks-side').hide(500);
+ $(".button-left").css({"background-color": "black", "color": "white"});
+ $(".button-right").css({"background-color": "gray", "color": "white"});
+ });
+$('.button-right').click(function() {
+ $('#drinks-side').show(500);
+ $('#food-side').hide(500);
+ $(".button-left").css({"background-color": "gray", "color": "white"});
+ $(".button-right").css({"background-color": "black", "color": "white"});
+});
   var apiKey =  "9973533";
 
   // Make API call to get recipe data
@@ -40,6 +58,7 @@ $(document).ready(function() {
   function displayRecipe(recipe) {
     $("#title").text(recipe.meals[0].strMeal)
     $("#thumbnail").attr("src", recipe.meals[0].strMealThumb)
+    $("#instructions").text(recipe.meals[0].strInstructions)
     
     if (recipe.meals[0].strYoutube) {
         var li = $("<li>").addClass("list-group-item pl-0");
