@@ -1,43 +1,44 @@
 $(document).ready(function() {
 
   var apiKey =  "9973533";
+  var mode = "recipes";
 
-  // Make API call to get recipe data
-  function getRecipes(queryURL, queryString, userInput, mode) {
+
+  function getRecipes(api, query, userInput) {
     $.ajax({
-      url: queryURL,
-      method: "GET",
-      data: {
-        i: userInput
-      }
+      url: `https://www.${api}.com/api/json/v2/${apiKey}/filter.php?${query}=${userInput}`,
+      method: "GET"
     }).then(function(response) {
+      console.log(response);
 
-      console.log(response);      
-
+      var index;
       var id;
 
-      var index = Math.floor(Math.random() * response.meals.length);
-
       if (mode === "recipes") {
+        index = Math.floor(Math.random() * response.meals.length);
         id = response.meals[index].idMeal;
+        getDetails(id, api);
+
       } else if (mode === "drinks") {
-        id = response.drinks[0].idDrink;
+        index = Math.floor(Math.random() * response.drinks.length);
+        id = response.drinks[index].idDrink;
+        getDetails(id, api);
       }
-
-      $.ajax({
-        url: `https://www.themealdb.com/api/json/v2/${apiKey}/lookup.php`,
-        method: "GET",
-        data: {
-          i: id
-        }
-      }).then(function(response) {
-        console.log(response);
-        displayRecipe(response);
-
-
-      });
     });
   }
+
+  function getDetails(id, api) {
+
+    console.log(id);
+
+    $.ajax({
+      url: `https://www.${api}.com/api/json/v2/${apiKey}/lookup.php?i=${id}`,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
+    });
+  }
+
 
 
   function displayRecipe(recipe) {
@@ -138,30 +139,41 @@ $(document).ready(function() {
 
 
   // Event Listener: Search button
-  $("#search").on("click", function() {
-    var mode = $(this).attr("data-mode");
-    var ingredient = $("#ingredient-input").val();
-    var category = $("#category").val();
-    var queryURL;
-    var queryString;
+  $(".search-btn").on("click", function() {
+
+    var ingredient;
+    var category;
+    var api;
+    var query;
+    var userInput;
 
     if (mode === "recipes") {
-      queryURL = `https://www.themealdb.com/api/json/v2/${apiKey}/filter.php`;
+      api = "themealdb";
+      ingredient = $("#recipe-ingredient").val();
+      category = $("#recipe-categories").val();
+
     } else if (mode === "drinks") {
-      queryURL = `https://www.thecocktaildb.com/api/json/v2/${apiKey}/filter.php`;
+      api = "thecocktaildb";
+      ingredient = $("#drink-ingredient").val();
+      category = $("#drink-categories").val();
     }
 
     if (ingredient && !category) {
-      queryString = "i";
-      getRecipes(queryURL, queryString, ingredient, mode);
+      query = "i";
+      userInput = ingredient;
 
     } else if (!ingredient && category) {
-      queryString = "c";
-      getRecipes(queryURL, queryString, category, mode)
-
+      userInput = category;
+      query = "c";
+    
     } else if (!ingredient && !category) {
       console.log("Invalid input.");
+
+    } else if (ingredient && category) {
+      console.log("Please choose one input only.");
     }
+
+    getRecipes(api, query, userInput);
   });
 
 
@@ -174,6 +186,7 @@ $(document).ready(function() {
   });
   
   $('.button-left').click(function() {
+    mode = "recipes";
     $('#food-side').show(500);
     $('#drinks-side').hide(500);
     $(".button-left").css({"background-color": "black", "color": "white"});
@@ -181,6 +194,7 @@ $(document).ready(function() {
   });
 
   $('.button-right').click(function() {
+    mode = "drinks";
     $('#drinks-side').show(500);
     $('#food-side').hide(500);
     $(".button-left").css({"background-color": "gray", "color": "white"});

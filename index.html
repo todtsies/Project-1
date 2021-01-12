@@ -32,12 +32,10 @@
             FOO
           </h1>
           <div class="button-section">
-            <button
-              class="btn button-outline-success active button-single button-left"
-            >
+            <button class="btn button-outline-success active button-single button-left" data-mode="recipes">
               Food
             </button>
-            <button class="btn button-outline-info button-single button-right">
+            <button class="btn button-outline-info button-single button-right" data-mode="drinks">
               Drinks
             </button>
           </div>
@@ -57,14 +55,14 @@
               >
               <input
                 type="text"
-                id="ingredient-input"
-                class="form-control mb-3"
+                id="recipe-ingredient"
+                class="form-control mb-3 ingredient"
               />
 
               <label for="category" class="mb-1"
                 >Option 2: Select a Category</label
               >
-              <select id="category" class="form-control mb-3">
+              <select id="recipe-categories" class="form-control mb-3 category">
                 <option id="select" value="" disabled selected>
                   Select...
                 </option>
@@ -86,7 +84,7 @@
 
               <hr />
 
-              <button id="search" type="button" class="btn btn-success btn-block" data-mode="recipes">
+              <button id="search" type="button" class="btn btn-success btn-block search-btn" data-mode="recipes">
                 Get Recipes!
               </button>
             </form>
@@ -143,11 +141,11 @@
             BAR
           </h1>
           <div class="button-section">
-            <button class="btn button-outline-info button-single button-left">
+            <button class="btn button-outline-info button-single button-left" data-mode="recipes">
               Food
             </button>
             <button
-              class="btn button-outline-success active button-single button-right"
+              class="btn button-outline-success active button-single button-right" data-mode="drinks"
             >
               Drinks
             </button>
@@ -165,14 +163,14 @@
               >
               <input
                 type="text"
-                id="ingredient-input"
-                class="form-control mb-3"
+                id="drink-ingredient"
+                class="form-control mb-3 ingredient"
               />
 
               <label for="category" class="mb-1"
                 >Option 2: Select a Category</label
               >
-              <select id="category" class="form-control mb-3">
+              <select id="drink-categories" class="form-control mb-3 catergory">
                 <option id="select" value="" disabled selected>
                   Select...
                 </option>
@@ -194,7 +192,7 @@
               <button
                 id="search"
                 type="button"
-                class="btn btn-info btn-block"
+                class="btn btn-info btn-block search-btn"
                 data-mode="drinks"
               >
                 Get Drinks!
