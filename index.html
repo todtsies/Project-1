@@ -86,12 +86,7 @@
 
               <hr />
 
-              <button
-                id="search"
-                type="button"
-                class="btn btn-success btn-block"
-                data-mode="recipes"
-              >
+              <button id="search" type="button" class="btn btn-success btn-block" data-mode="recipes">
                 Get Recipes!
               </button>
             </form>
@@ -100,37 +95,25 @@
           <!-- Results -->
           <div class="col-12 col-sm-8 col-xl-9">
             <div class="card">
+
               <!-- API Response: Title -->
               <div class="card-header list-group-item-success">
                 <p id="title" class="h3 m-0"></p>
               </div>
 
               <div class="row card-body">
+
                 <!-- API Response: Image -->
                 <div class="col-12 col-lg-6">
                   <img id="thumbnail" src="" alt="" class="img-fluid rounded" />
                 </div>
 
-                <!-- API Response: Text Data -->
+                <!-- API Response: Recipe Details + Links -->
                 <div class="col-12 col-lg-6">
-                  <!-- API Response: Ingredients -->
-                  <ul
-                    id="recipe-info"
-                    class="list-group list-group-flush mt-3 mt-lg-0 text-center text-lg-left"
-                  >
-                    <!-- API Reponse: Button to collapse/expand instructions -->
-                    <li class="list-group-item pl-0">
-                      <a
-                        href=""
-                        class="text-success bold"
-                        data-toggle="collapse"
-                        data-target="#drawer"
-                        aria-expanded="false"
-                        aria-controls="drawer"
-                      >
-                        View Recipe Instructions
-                      </a>
-                    </li>
+                  <ul id="recipe-info" class="list-group list-group-flush mt-3 mt-lg-0 text-center text-lg-left">
+
+                    <!-- Recipe Details and Links Dynamically Inserted HERE-->
+
                   </ul>
                 </div>
               </div>
@@ -147,6 +130,8 @@
       </div>
     </main>
 
+
+    
     <!--DRINKS SIDE-->
     <main id="drinks-side">
       <header class="bg-info px-1 py-2 mb-3 text-white">
