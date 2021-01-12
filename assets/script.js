@@ -11,8 +11,25 @@ $(document).ready(function() {
     }).then(function(response) {
       console.log(response);
 
+      var recipeArray;
+      var recipeIds = [];
       var index;
       var id;
+
+      if (mode === "recipes") {
+        recipeArray = response.meals;
+      } else if (mode === "drinks") {
+        recipeArray = response.drinks;
+      }
+
+      $.each(recipeArray, function(i, recipe) {
+        if (mode === "recipes") {
+          recipeIds.push(recipe.idMeal);
+
+        } else if (mode === "drinks") {
+          recipeIds.push(recipe.drinkId);
+        }
+      });
 
       if (mode === "recipes") {
         index = Math.floor(Math.random() * response.meals.length);
@@ -27,72 +44,87 @@ $(document).ready(function() {
     });
   }
 
+
   function getDetails(id, api) {
-
-    console.log(id);
-
     $.ajax({
       url: `https://www.${api}.com/api/json/v2/${apiKey}/lookup.php?i=${id}`,
       method: "GET"
     }).then(function(response) {
       console.log(response);
+
+      if (mode === "recipes") {
+        getIngredientList(response.meals[0]);
+
+      } else if (mode === "drinks") {
+        getIngredientList(response.drinks[0]);
+      }
     });
   }
 
 
-
-  function displayRecipe(recipe) {
-    var meal = recipe.meals[0];
+  function getIngredientList(recipe) {
 
     var ingredients = [
-      meal.strIngredient1,
-      meal.strIngredient2,
-      meal.strIngredient3,
-      meal.strIngredient4,
-      meal.strIngredient5,
-      meal.strIngredient6,
-      meal.strIngredient7,
-      meal.strIngredient8,
-      meal.strIngredient9,
-      meal.strIngredient10,
-      meal.strIngredient11,
-      meal.strIngredient12,
-      meal.strIngredient13,
-      meal.strIngredient14,
-      meal.strIngredient15,
-      meal.strIngredient16,
-      meal.strIngredient17,
-      meal.strIngredient18,
-      meal.strIngredient19,
-      meal.strIngredient20,
+      recipe.strIngredient1,
+      recipe.strIngredient2,
+      recipe.strIngredient3,
+      recipe.strIngredient4,
+      recipe.strIngredient5,
+      recipe.strIngredient6,
+      recipe.strIngredient7,
+      recipe.strIngredient8,
+      recipe.strIngredient9,
+      recipe.strIngredient10,
+      recipe.strIngredient11,
+      recipe.strIngredient12,
+      recipe.strIngredient13,
+      recipe.strIngredient14,
+      recipe.strIngredient15,
+      recipe.strIngredient16,
+      recipe.strIngredient17,
+      recipe.strIngredient18,
+      recipe.strIngredient19,
+      recipe.strIngredient20,
     ];
 
     var measurements = [
-      meal.strMeasure1,
-      meal.strMeasure2,
-      meal.strMeasure3,
-      meal.strMeasure4,
-      meal.strMeasure5,
-      meal.strMeasure6,
-      meal.strMeasure7,
-      meal.strMeasure8,
-      meal.strMeasure9,
-      meal.strMeasure10,
-      meal.strMeasure11,
-      meal.strMeasure12,
-      meal.strMeasure13,
-      meal.strMeasure14,
-      meal.strMeasure15,
-      meal.strMeasure16,
-      meal.strMeasure17,
-      meal.strMeasure18,
-      meal.strMeasure19,
-      meal.strMeasure20,
+      recipe.strMeasure1,
+      recipe.strMeasure2,
+      recipe.strMeasure3,
+      recipe.strMeasure4,
+      recipe.strMeasure5,
+      recipe.strMeasure6,
+      recipe.strMeasure7,
+      recipe.strMeasure8,
+      recipe.strMeasure9,
+      recipe.strMeasure10,
+      recipe.strMeasure11,
+      recipe.strMeasure12,
+      recipe.strMeasure13,
+      recipe.strMeasure14,
+      recipe.strMeasure15,
+      recipe.strMeasure16,
+      recipe.strMeasure17,
+      recipe.strMeasure18,
+      recipe.strMeasure19,
+      recipe.strMeasure20,
     ];
 
-    $("#title").text(meal.strMeal);
-    $("#thumbnail").attr("src", meal.strMealThumb);
-    $("#instructions").text(meal.strInstructions);
+    if (mode === "recipes") {
+      displayRecipe(recipe, ingredients, measurements);
+
+    } else if (mode === "drinks") {
+
+    }
+
+  }
+
+
+  function displayRecipe(recipe, ingredients, measurements) {
+
+    $("#title").text(recipe.strMeal);
+    $("#thumbnail").attr("src", recipe.strMealThumb);
+    $("#instructions").text(recipe.strInstructions);
 
     var listTitle = $("<li>");
     listTitle.addClass("list-group-item text-success bold pl-0");
@@ -102,26 +134,26 @@ $(document).ready(function() {
     $.each(ingredients, function(i, ingredient) {
       if (ingredient) {
         var li = $("<li>");
-        li.addClass("list-group-item pt-0 pl-0");
+        li.addClass("list-group-item pl-0");
         li.text(measurements[i] + " " + ingredient);
         $("#recipe-info").append(li);
       }
     });
 
-    if (meal.strSource) {
+    if (recipe.strSource) {
       var li = $("<li>").addClass("list-group-item pl-0");
       var a = $("<a>").addClass("text-success bold");
       a.text("View Recipe Source");
-      a.attr("href", meal.strSource)
+      a.attr("href", recipe.strSource)
       li.append(a);
       $("#recipe-info").append(li);
     }
 
-    if (meal.strYoutube) {
+    if (recipe.strYoutube) {
       var li = $("<li>").addClass("list-group-item pl-0");
       var a = $("<a>").addClass("text-success bold");
       a.text("View Video");
-      a.attr("href", meal.strYoutube)
+      a.attr("href", recipe.strYoutube)
       li.append(a);
       $("#recipe-info").append(li);
     }
