@@ -126,9 +126,7 @@
           </div>
         </div>
       </div>
-    <footer class="fixed-bottom bg-success py-2 text-light text-center">
-        <p class="h6 m-0">Copyright 2021</p>
-    </footer>
+      
     </main>
 
 
@@ -144,11 +142,11 @@
             BAR
           </h1>
           <div class="button-section">
-            <button class="btn button-outline-info button-single button-left" data-mode="recipes">
+            <button class="btn button-single button-left" data-mode="recipes">
               Food
             </button>
             <button
-              class="btn button-outline-success active button-single button-right" data-mode="drinks"
+              class="btn button-single button-right" data-mode="drinks"
             >
               Drinks
             </button>
@@ -179,15 +177,7 @@
                 </option>
                 <option id="category-ordinary">Ordinary Drink</option>
                 <option id="category-cocktail">Cocktail</option>
-                <option id="category-milk-float-shake">Milk/Float/Shake</option>
-                <option id="category-coffee-tea">Coffee/Tea</option>
-                <option id="category-homemade-liqueur">Homemade Liqueur</option>
-                <option id="category-punch-party-drink">
-                  Punch/Party Drink
-                </option>
                 <option id="category-beer">Beer</option>
-                <option id="category-soft-drink">Soft Drink</option>
-                <option id="category-other">Other</option>
               </select>
 
               <hr />
@@ -206,37 +196,26 @@
           <!-- Results -->
           <div class="col-12 col-sm-8 col-xl-9">
             <div class="card">
-              <!-- API Response: Title -->
+              
+              <!-- API Response: Drink Title -->
               <div class="card-header list-group-item-info">
-                <p id="title" class="h3 m-0"></p>
+                <p id="drink-title" class="h3 m-0"></p>
               </div>
 
               <div class="row card-body">
-                <!-- API Response: Image -->
+                
+                <!-- API Response: Drink Image -->
                 <div class="col-12 col-lg-6">
-                  <img id="thumbnail" src="" alt="" class="img-fluid rounded" />
+                  <img id="drink-thumbnail" src="" alt="" class="img-fluid rounded" />
                 </div>
 
                 <!-- API Response: Text Data -->
                 <div class="col-12 col-lg-6">
                   <!-- API Response: Ingredients -->
                   <ul
-                    id="recipe-info"
+                    id="drink-info"
                     class="list-group list-group-flush mt-3 mt-lg-0 text-center text-lg-left"
-                  >
-                    <!-- API Reponse: Button to collapse/expand instructions -->
-                    <li class="list-group-item pl-0">
-                      <a
-                        href=""
-                        class="text-info bold"
-                        data-toggle="collapse"
-                        data-target="#drawer"
-                        aria-expanded="false"
-                        aria-controls="drawer"
-                      >
-                        View Drink Instructions
-                      </a>
-                    </li>
+                  >                
                   </ul>
                 </div>
               </div>
@@ -244,18 +223,17 @@
               <!-- API Response: Recipe Instructions -->
               <div id="drawer" class="collapse">
                 <div class="card-footer">
-                  <p id="instructions"></p>
+                  <p id="drink-instructions"></p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <footer class="fixed-bottom bg-info py-2 text-light text-center">
-        <p class="h6 m-0">Copyright 2021</p>
-      </footer>
     </main>
+
+    <!-- Sticky footer -->
+    <footer id="sticky-footer" class="text-center fixed-bottom"><i class="far fa-copyright"></i> Copyright 2021</footer>
 
     <!-- jQuery -->
     <script

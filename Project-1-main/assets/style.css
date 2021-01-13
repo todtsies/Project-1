@@ -1,0 +1,21 @@
+body {
+  overflow-y: scroll;
+}
+
+main {
+  padding-bottom: 50px;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+#sticky-footer {
+  color: white;
+}
+
+.save-btn {
+  float: right;
+  position: static;
+  margin-top: -30px;
+}
