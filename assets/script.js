@@ -2,8 +2,12 @@ $(document).ready(function() {
  
     var apiKey =  "9973533";
     var mode = "recipes";
+    var recipeIds = [];
+    var currentIndex;
+    var api;
 
     function getRecipes(api, query, userInput) {
+      recipeIds.splice(0)
       $.ajax({
         url: `https://www.${api}.com/api/json/v2/${apiKey}/filter.php?${query}=${userInput}`,
         method: "GET"
@@ -11,8 +15,6 @@ $(document).ready(function() {
         console.log(response);
  
         var recipeArray;
-        var recipeIds = [];
-        var index;
         var id;
  
         if (mode === "recipes") {
@@ -31,13 +33,13 @@ $(document).ready(function() {
         });
   
         if (mode === "recipes") {
-          index = Math.floor(Math.random() * response.meals.length);
-          id = response.meals[index].idMeal;
+          currentIndex = Math.floor(Math.random() * response.meals.length);
+          id = response.meals[currentIndex].idMeal;
           getDetails(id, api);
   
         } else if (mode === "drinks") {
-          index = Math.floor(Math.random() * response.drinks.length);
-          id = response.drinks[index].idDrink;
+          currentIndex = Math.floor(Math.random() * response.drinks.length);
+          id = response.drinks[currentIndex].idDrink;
           getDetails(id, api);
         }
       });
@@ -224,7 +226,6 @@ $(document).ready(function() {
   
       var ingredient;
       var category;
-      var api;
       var query;
       var userInput;
   
@@ -283,6 +284,23 @@ $(document).ready(function() {
       $(".button-left").css({"background-color": "gray", "color": "white"});
       $(".button-right").css({"background-color": "black", "color": "white"});
       $("#sticky-footer").removeClass("bg-success").addClass("bg-info");
+    });
+
+    $('.cycle-forward').click(function(){
+      console.log(currentIndex)
+      var lastIndex = recipeIds.length - 1; 
+      
+      if (currentIndex === lastIndex){
+        getDetails(recipeIds[0],api);
+        currentIndex = 0
+      }
+      
+      else {
+        getDetails(recipeIds[currentIndex + 1 ],api)
+        currentIndex++
+        
+      }
+
     });
   });
 
