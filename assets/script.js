@@ -156,17 +156,15 @@ $(document).ready(function() {
   
       var instructions = $("<li>").addClass("list-group-item pl-0");
       var instructionsLink = $("<a>").addClass("text-success bold");
-      instructionsLink.attr("data-toggle", "collapse");
-      instructionsLink.attr("data-target", "#drawer");
-      instructionsLink.attr("aria-expanded", "false");
-      instructionsLink.attr("aria-controls", "drawer");
+      instructions.attr({
+        "data-toggle": "collapse",
+        "data-target": "#drawer",
+        "aria-expanded": "false",
+        "aria-controls": "drawer"
+      });
       instructionsLink.text("View Recipe Instructions");
       instructions.append(instructionsLink);
       $("#recipe-info").append(instructions);
-  
-      var saveFoodButton = $("<button>").addClass("btn save-btn btn-success");
-      saveFoodButton.text("Save this Recipe!");
-      $(".card-header").append(saveFoodButton);
     }
   
     // Display function for drink recipes
@@ -207,19 +205,18 @@ $(document).ready(function() {
         li.append(a);
         $("#drink-info").append(li);
       }
-     var instructions = $("<li>").addClass("list-group-item pl-0");
+
+      var instructions = $("<li>").addClass("list-group-item pl-0");
       var instructionsLink = $("<a>").addClass("text-info bold");
-      instructionsLink.attr("data-toggle", "collapse");
-      instructionsLink.attr("data-target", "#drawer");
-      instructionsLink.attr("aria-expanded", "false");
-      instructionsLink.attr("aria-controls", "drawer");
+      instructions.attr({
+        "data-toggle": "collapse",
+        "data-target": "#drawer",
+        "aria-expanded": "false",
+        "aria-controls": "drawer"
+      });
       instructionsLink.text("View Drink Instructions");
       instructions.append(instructionsLink);
       $("#drink-info").append(instructions);
-  
-      var saveDrinkButton = $("<button>").addClass("btn save-btn btn-info");
-      saveDrinkButton.text("Save this Recipe!");
-      $(".card-header").append(saveDrinkButton);
     }
   
     // Event Listener: Search button
@@ -266,7 +263,6 @@ $(document).ready(function() {
       $("#drinks-side").hide();
       $(".button-left").css({"background-color": "black", "color": "white"});
       $(".button-right").css({"background-color": "gray", "color": "white"});
-      $("#sticky-footer").addClass("bg-success");
     });
     
     $('.button-left').click(function() {
