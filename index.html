@@ -48,20 +48,20 @@
           <!-- Sidebar: Form -->
           <div class="col-12 col-sm-4 col-xl-3">
             <form class="mb-3 p-3 rounded list-group-item-success">
-              <label for="ingredient-input" class="mb-1"
-                >Option 1: Input an Ingredient</label
-              >
-              <input
-                type="text"
-                id="recipe-ingredient"
-                class="form-control mb-3 ingredient"
-              />
-
-              <label for="category" class="mb-1"
-                >Option 2: Select a Category</label
-              >
+              <p class="h5 m-0">Choose an Option:</p>
+              <hr>
+            ​
+              <label for="ingredient-input" class="mb-1">
+                Option 1: Input an Ingredient
+              </label>
+              <input type="text" id="recipe-ingredient" class="form-control mb-3 ingredient"/>
+            ​
+              <label for="category" class="mb-1">
+                Option 2: Select a Category
+              </label>
+              
               <select id="recipe-categories" class="form-control mb-3 category">
-                <option id="select" value="" disabled selected>
+                <option id="select" value="" selected>
                   Select...
                 </option>
                 <option id="category-beef">Beef</option>
@@ -79,9 +79,9 @@
                 <option id="category-vegan">Vegan</option>
                 <option id="category-vegetarian">Vegetarian</option>
               </select>
-
+            ​
               <hr />
-
+            ​
               <button id="search" type="button" class="btn btn-success btn-block search-btn" data-mode="recipes">
                 Get Recipes!
               </button>
