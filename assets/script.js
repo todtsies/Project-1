@@ -120,9 +120,9 @@ $(document).ready(function() {
   //Display recipes function for food side
     function displayRecipe(recipe, ingredients, measurements) {
       $("#recipe-info").empty();
-      $("#title").text(recipe.strMeal);
-      $("#thumbnail").attr("src", recipe.strMealThumb);
-      $("#instructions").text(recipe.strInstructions);
+      $("#recipe-title").text(recipe.strMeal);
+      $("#recipe-thumbnail").attr("src", recipe.strMealThumb);
+      $("#recipe-instructions").text(recipe.strInstructions);
   
       var listTitle = $("<li>");
       listTitle.addClass("list-group-item text-success bold pl-0");

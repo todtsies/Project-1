@@ -92,20 +92,19 @@
 
             <!-- Saved Recipes Container -->
             <div class="saved-recipes list-group-item-success rounded p-3 mb-3">
-               <div id="saved-recipes-header" class="saved-items" data-toggle="collapse" data-target="#saved-recipes-container" aria-expanded="false" aria-controls="saved-recipes-container">
+              <div id="saved-recipes-header" class="saved-items" data-toggle="collapse" data-target="#saved-recipes-container" aria-expanded="false" aria-controls="saved-recipes-container">
                 <p class="h5 m-0">
                 <i id="recipe-arrow" class="fas fa-chevron-down mr-1" data-direction="down"></i>
                 Saved Recipes
-              </p>
-            </div>
+                </p>
+              </div>
             
-            <div id="saved-recipes-container" class="collapse mt-3">
-    
-    <!-- Saved Recipes Dynamically Inserted Here -->
-​
-  </div>
-</div>
-
+              <div id="saved-recipes-container" class="collapse mt-3">
+      
+      <!-- Saved Recipes Dynamically Inserted Here -->
+  ​
+              </div>
+            </div>
           </div>
 
           <!-- Results -->
@@ -117,7 +116,7 @@
                 <p class="h3 m-0 cycle-backward">
                   <i class="fas fa-angle-left"></i>
                 </p>
-                <p id="title" class="h3 m-0 text-center"></p>
+                <p id="recipe-title" class="h3 m-0 text-center"></p>
                 <p class="h3 m-0 cycle-forward">
                   <i class="fas fa-angle-right"></i>
                 </p>
@@ -127,7 +126,7 @@
 
                 <!-- API Response: Image -->
                 <div class="col-12 col-lg-6">
-                  <img id="thumbnail" src="" alt="" class="img-fluid rounded" />
+                  <img id="recipe-thumbnail" src="" alt="" class="img-fluid rounded" />
                 </div>
 
                 <!-- API Response: Recipe Details + Links -->
@@ -143,7 +142,7 @@
               <!-- API Response: Recipe Instructions -->
               <div id="drawer" class="collapse">
                 <div class="card-footer">
-                  <p id="instructions"></p>
+                  <p id="recipe-instructions"></p>
                 </div>
               </div>
             </div>
@@ -275,7 +274,7 @@
 
     <!-- Footer -->
     <footer id="sticky-footer" class="fixed-bottom bg-success py-3">
-      <p class="h6 text-white text-center m-0">Copyright 2021</p>
+      <p class="h6 text-white text-center m-0">&copy; Copyright 2021</p>
     </footer>
 
     <!-- jQuery -->
