@@ -430,6 +430,24 @@ $(document).ready(function() {
     }
   });
 
+  // Event Listeners: Save recipe and save drink buttons
+  $("#save-recipe").on("click", saveRecipe);
+  $("#save-drink").on("click", saveDrink)
+
+
+  // Event Listener: Saved recipe badge
+  $(".badge-recipe").on("click", function() {
+    var recipeId = $(this).attr("data-id");
+    getDetails(recipeId, "themealdb");
+  });
+
+
+  // Event Listener: Saved drink badge
+  $(".badge-drink").on("click", function() {
+    var drinkId = $(this).attr("data-id");
+    getDetails(drinkId, "thecocktaildb");
+  });
+
 
   // Event Listeners: Food/Drink Buttons in top right corner
   $(".button-left").ready(function() {
