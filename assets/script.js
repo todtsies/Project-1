@@ -24,51 +24,62 @@ $(document).ready(function() {
 
   // Get recipe/drink data from APIs
   function getRecipes(api, query, userInput) {
-    recipeIds.splice(0)
+
+    // Empty recipe and drink ID arrays before requesting new data
+    if (mode === "recipes") {
+      recipeIds.splice(0);
+    } else if (mode === "drinks") {
+      drinkIds.splice(0);
+    }
+
+    // Request data from either recipe API or drink API
     $.ajax({
       url: `https://www.${api}.com/api/json/v2/${apiKey}/filter.php?${query}=${userInput}`,
       method: "GET"
     }).then(function(response) {
-      console.log(response);
 
-      var recipeArray;
+      var resultsArray;
       var id;
 
+      // Add returned recipes or drinks to temp array
       if (mode === "recipes") {
-        recipeArray = response.meals;
+        resultsArray = response.meals;
       } else if (mode === "drinks") {
-        recipeArray = response.drinks;
+        resultsArray = response.drinks;
       }
 
-      $.each(recipeArray, function(i, recipe) {
+      // Loop through results and push ID numbers into arrays
+      $.each(resultsArray, function(i, recipe) {
         if (mode === "recipes") {
           recipeIds.push(recipe.idMeal);
 
         } else if (mode === "drinks") {
-          recipeIds.push(recipe.drinkId);
+          drinkIds.push(recipe.idDrink);
         }
       });
 
+      // Generate random index from results array and pass into get details function
       if (mode === "recipes") {
-        currentIndex = Math.floor(Math.random() * response.meals.length);
-        id = response.meals[currentIndex].idMeal;
+        currentRecipe = Math.floor(Math.random() * response.meals.length);
+        id = response.meals[currentRecipe].idMeal;
         getDetails(id, api);
 
       } else if (mode === "drinks") {
-        currentIndex = Math.floor(Math.random() * response.drinks.length);
-        id = response.drinks[currentIndex].idDrink;
+        currentDrink = Math.floor(Math.random() * response.drinks.length);
+        id = response.drinks[currentDrink].idDrink;
         getDetails(id, api);
       }
     });
   }
 
+  // Get recipe or drink details by ID number
   function getDetails(id, api) {
     $.ajax({
       url: `https://www.${api}.com/api/json/v2/${apiKey}/lookup.php?i=${id}`,
       method: "GET"
     }).then(function(response) {
-      console.log(response);
 
+      // Pass results into get ingredients functions
       if (mode === "recipes") {
         getIngredientList(response.meals[0]);
 
@@ -78,6 +89,7 @@ $(document).ready(function() {
     });
   }
 
+  // Get ingredients and measurements from result and pass into arrays
   function getIngredientList(recipe) {
 
     var ingredients = [
@@ -126,6 +138,7 @@ $(document).ready(function() {
       recipe.strMeasure20,
     ];
 
+    // Call function to display results in UI
     if (mode === "recipes") {
       displayRecipe(recipe, ingredients, measurements);
 
@@ -134,18 +147,24 @@ $(document).ready(function() {
     }
 
   }
-//Display recipes function for food side
+
+
+  // Display recipe in UI
   function displayRecipe(recipe, ingredients, measurements) {
+
+    // Display text fields
     $("#recipe-info").empty();
     $("#recipe-title").text(recipe.strMeal);
     $("#recipe-thumbnail").attr("src", recipe.strMealThumb);
     $("#recipe-instructions").text(recipe.strInstructions);
 
+    // Generate ingredients title
     var listTitle = $("<li>");
     listTitle.addClass("list-group-item text-success bold pl-0");
     listTitle.text("Ingredients:")
     $("#recipe-info").append(listTitle);
 
+    // Display ingredients and measurements
     $.each(ingredients, function(i, ingredient) {
       if (ingredient) {
         var li = $("<li>");
@@ -155,6 +174,7 @@ $(document).ready(function() {
       }
     });
 
+    // Display recipe source link (if available)
     if (recipe.strSource) {
       var li = $("<li>").addClass("list-group-item pl-0");
       var a = $("<a>").addClass("text-success bold");
@@ -164,6 +184,7 @@ $(document).ready(function() {
       $("#recipe-info").append(li);
     }
 
+    // Display recipe YouTube link (if available)
     if (recipe.strYoutube) {
       var li = $("<li>").addClass("list-group-item pl-0");
       var a = $("<a>").addClass("text-success bold");
@@ -173,6 +194,7 @@ $(document).ready(function() {
       $("#recipe-info").append(li);
     }
 
+    // Display recipe instructions and instructions link
     var instructions = $("<li>").addClass("list-group-item pl-0");
     var instructionsLink = $("<a>").addClass("text-success bold");
     instructions.attr({
@@ -186,45 +208,50 @@ $(document).ready(function() {
     $("#recipe-info").append(instructions);
   }
 
-  // Display function for drink recipes
-  function displayDrinks(recipe, ingredients, measurements) {
+
+  // Display drink in UI
+  function displayDrinks(drink, ingredients, measurements) {
+
+    // Display text fields
     $("#drink-info").empty();
-    $("#drink-title").text(recipe.strDrink);
-    $("#drink-thumbnail").attr("src", recipe.strDrinkThumb);
-    $("#drink-instructions").text(recipe.strInstructions);
+    $("#drink-title").text(drink.strDrink);
+    $("#drink-thumbnail").attr("src", drink.strDrinkThumb);
+    $("#drink-instructions").text(drink.strInstructions);
 
-    var listIngTitle = $("<li>");
-    listIngTitle.addClass("list-group-item text-info bold pl-0");
-    listIngTitle.text("Ingredients:")
-    $("#drink-info").append(listIngTitle);
+    // Generate ingredients title
+    var li = $("<li>");
+    li.addClass("list-group-item text-info bold pl-0");
+    li.text("Ingredients:")
+    $("#drink-info").append(li);
 
+    // Display ingredients and measurements
     $.each(ingredients, function(i, ingredient) {
       if (ingredient) {
-        var drinkLi = $("<li>");
-        drinkLi.addClass("list-group-item pl-0");
-        drinkLi.text(measurements[i] + " " + ingredient);
-        $("#drink-info").append(drinkLi);
+        var li = $("<li>");
+        li.addClass("list-group-item pl-0");
+        li.text(measurements[i] + " " + ingredient);
+        $("#drink-info").append(li);
       }
     });
 
-    if (recipe.strSource) {
+    // Display glass (if available)
+    if (drink.strGlass) {
+      var li = $("<li>").addClass("list-group-item pl-0 text-info bold");
+      li.text(`Preferred Glass: ${drink.strGlass}`);
+      $("#drink-info").append(li);
+    }
+
+    // Display drink source link (if available)
+    if (drink.strSource) {
       var li = $("<li>").addClass("list-group-item pl-0");
       var a = $("<a>").addClass("text-info bold");
-      a.text("View Recipe Source");
-      a.attr("href", recipe.strSource)
+      a.text("View drink Source");
+      a.attr("href", drink.strSource)
       li.append(a);
       $("#drink-info").append(li);
     }
 
-    if (recipe.strVideo) {
-      var li = $("<li>").addClass("list-group-item pl-0");
-      var a = $("<a>").addClass("text-info bold");
-      a.text("View Video");
-      a.attr("href", recipe.strVideo)
-      li.append(a);
-      $("#drink-info").append(li);
-    }
-
+    // Display drink instructions
     var instructions = $("<li>").addClass("list-group-item pl-0");
     var instructionsLink = $("<a>").addClass("text-info bold");
     instructions.attr({
@@ -248,7 +275,7 @@ $(document).ready(function() {
     $("#saved-recipes-container").append(badge);
   }
 
-  
+
   function displaySavedDrinks(drink) {
     var badge = $("<a>").attr("href", "#");
     badge.addClass("badge badge-info p-2 my-1 mr-1 badge-drink");
