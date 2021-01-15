@@ -238,25 +238,96 @@ $(document).ready(function() {
     $("#drink-info").append(instructions);
   }
 
+
+  // Display saved recipes and drinks
+  function displaySavedRecipes(recipe) {
+    var badge = $("<a>").attr("href", "#");
+    badge.addClass("badge badge-success p-2 my-1 mr-1 badge-recipe");
+    badge.attr("data-id", recipe.id);
+    badge.text(recipe.title);
+    $("#saved-recipes-container").append(badge);
+  }
+
+  
+  function displaySavedDrinks(drink) {
+    var badge = $("<a>").attr("href", "#");
+    badge.addClass("badge badge-info p-2 my-1 mr-1 badge-drink");
+    badge.attr("data-id", drink.id)
+    badge.text(drink.title);
+    $("#saved-drinks-container").append(badge);
+  }
+
+
+  function saveRecipe() {
+    var recipe = {
+      id: recipeIds[currentRecipe],
+      title: $("#title").text()
+    }
+
+    displaySavedRecipes(recipe);
+    getStorage();
+    savedRecipes.push(recipe);
+    setStorage("recipes");
+  }
+
+
+  function saveDrink() {
+    var drink = {
+      id: drinkIds[currentDrink],
+      title: $("#drink-title").text()
+    };
+
+    displaySavedDrinks(drink);
+    getStorage();
+    savedDrinks.push(drink);
+    setStorage("drinks");
+  }
+
+
+  // Get saved recipes and drinks
+  function getStorage() {
+    if (localStorage.getItem("recipes") === null) {
+      savedRecipes = [];
+    } else {
+      savedRecipes = JSON.parse(localStorage.getItem("recipes"));
+    }
+
+    if (localStorage.getItem("drinks") === null) {
+      savedDrinks = [];
+    } else {
+      savedDrinks = JSON.parse(localStorage.getItem("drinks"));
+    }
+  }
+
+
+  // Set saved recipes to local storage
+  function setStorage(mode) {
+    if (mode === "recipes") {
+      localStorage.setItem("recipes", JSON.stringify(savedRecipes));
+    } else if (mode === "drinks") {
+      localStorage.setItem("drinks", JSON.stringify(savedDrinks));
+    }
+  }
+
+
   // Event Listener: Search button
   $(".search-btn").on("click", function() {
-
     var ingredient;
     var category;
     var query;
     var userInput;
 
+    // Capture user inputs
     if (mode === "recipes") {
-      api = "themealdb";
       ingredient = $("#recipe-ingredient").val();
       category = $("#recipe-categories").val();
 
     } else if (mode === "drinks") {
-      api = "thecocktaildb";
       ingredient = $("#drink-ingredient").val();
       category = $("#drink-categories").val();
     }
 
+    // Validate and check whether user inputted ingredient or category
     if (ingredient && !category) {
       query = "i";
       userInput = ingredient;
@@ -272,11 +343,18 @@ $(document).ready(function() {
       console.log("Please choose one input only.");
     }
 
+    // Get recipe/drink data from API
     getRecipes(api, query, userInput);
+
+    // Reset input fields
+    $("#recipe-ingredient").val("");
+    $("#recipe-categories").val($("#recipe-categories option:first").val());
+    $("#drink-ingredient").val("");
+    $("#drink-categories").val($("#drink-categories option:first").val());
   });
 
 
-  // EVENT LISTENER: Cycle Forward Arrow
+  // Event Listener: Cycle Forward Arrow
   $(".cycle-forward").click(function() {
     var lastRecipe = recipeIds.length - 1;
     var lastDrink = drinkIds.length - 1;
@@ -301,7 +379,7 @@ $(document).ready(function() {
   });
 
 
-  // EVENT LISTENER: Cycle Backward Button
+  // Event Listener: Cycle Backward Button
   $(".cycle-backward").click(function() {
     var lastRecipe = recipeIds.length - 1;
     var lastDrink = drinkIds.length - 1;
@@ -334,7 +412,7 @@ $(document).ready(function() {
     $(".button-right").css({"background-color": "gray", "color": "white"});
   });
 
-  // EVENT LISTENER: Food Button
+  // Event Listener: Food Button
   $('.button-left').click(function() {
     mode = "recipes";
     api = "themealdb";
@@ -346,7 +424,7 @@ $(document).ready(function() {
     $("#sticky-footer").removeClass("bg-info").addClass("bg-success");
   });
 
-  // EVENT LISTENER: Drinks Button
+  // Event Listener: Drinks Button
   $('.button-right').click(function() {
     mode = "drinks";
     api = "thecocktaildb";
