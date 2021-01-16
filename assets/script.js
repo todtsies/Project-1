@@ -17,10 +17,8 @@ $(document).ready(function() {
   var savedRecipes = [];
   var savedDrinks = [];
 
-
   // Initialize app
   init();
-
 
   // Startup function
   function init() {
@@ -50,9 +48,8 @@ $(document).ready(function() {
     });
   }
 
-
   // Preload a random recipe and drink on startup
-function preloadRandomRecipe() {
+  function preloadRandomRecipe() {
   ​
     // Get random recipe
     $.ajax({
@@ -75,7 +72,6 @@ function preloadRandomRecipe() {
       })
     });
   }
-
 
   // Get recipe/drink data from APIs
   function getRecipes(api, query, userInput) {
@@ -203,7 +199,6 @@ function preloadRandomRecipe() {
 
   }
 
-
   // Display recipe in UI
   function displayRecipe(recipe, ingredients, measurements) {
 
@@ -263,7 +258,6 @@ function preloadRandomRecipe() {
     $("#recipe-info").append(instructions);
   }
 
-
   // Display drink in UI
   function displayDrinks(drink, ingredients, measurements) {
 
@@ -320,7 +314,6 @@ function preloadRandomRecipe() {
     $("#drink-info").append(instructions);
   }
 
-
   // Display saved recipes and drinks
   function displaySavedRecipes(recipe) {
     var badge = $("<a>").attr("href", "#");
@@ -330,7 +323,6 @@ function preloadRandomRecipe() {
     $("#saved-recipes-container").append(badge);
   }
 
-
   function displaySavedDrinks(drink) {
     var badge = $("<a>").attr("href", "#");
     badge.addClass("badge badge-info p-2 my-1 mr-1 badge-drink");
@@ -338,7 +330,6 @@ function preloadRandomRecipe() {
     badge.text(drink.title);
     $("#saved-drinks-container").append(badge);
   }
-
 
   // Save recipe to local storage
   function saveRecipe() {
@@ -353,7 +344,6 @@ function preloadRandomRecipe() {
     setStorage("recipes");
   }
 
-
   // Save drink to local storage
   function saveDrink() {
     var drink = {
@@ -366,7 +356,6 @@ function preloadRandomRecipe() {
     savedDrinks.push(drink);
     setStorage("drinks");
   }
-
 
   // Get saved recipes and drinks
   function getStorage() {
@@ -383,7 +372,6 @@ function preloadRandomRecipe() {
     }
   }
 
-
   // Set saved recipes to local storage
   function setStorage(mode) {
     if (mode === "recipes") {
@@ -392,7 +380,6 @@ function preloadRandomRecipe() {
       localStorage.setItem("drinks", JSON.stringify(savedDrinks));
     }
   }
-
 
   // Event Listener: Search button
   $(".search-btn").on("click", function() {
@@ -439,7 +426,6 @@ function preloadRandomRecipe() {
     $("#drink-categories").val($("#drink-categories option:first").val());
   });
 
-
   // Event Listener: Cycle Forward Arrow
   $(".cycle-forward").click(function() {
     var lastRecipe = recipeIds.length - 1;
@@ -463,7 +449,6 @@ function preloadRandomRecipe() {
       getDetails(drinkIds[currentDrink], api);
     }
   });
-
 
   // Event Listener: Cycle Backward Button
   $(".cycle-backward").click(function() {
@@ -489,7 +474,6 @@ function preloadRandomRecipe() {
     }
   });
 
-
   // Event Listener: Saved recipe arrow
   $("#saved-recipes-header").on("click", function() {
     var arrow = $("#recipe-arrow");
@@ -506,7 +490,6 @@ function preloadRandomRecipe() {
       arrow.attr("data-direction", "up");
     }
   });
-
 
   // Event Listener: Saved drinks arrow
   $("#saved-drinks-header").on("click", function() {
@@ -525,23 +508,22 @@ function preloadRandomRecipe() {
     }
   });
 
-
   // Event Listeners: Save recipe and save drink buttons
   $("#save-recipe").on("click", saveRecipe);
   $("#save-drink").on("click", saveDrink);
 
   // Event Listener: Delete recipes from UI and local storage
   $("#delete-recipes").on("click", function() {
-  $("#saved-recipes-container").empty();
-  savedRecipes.splice(0);
-  setStorage("recipes");
+    $("#saved-recipes-container").empty();
+    savedRecipes.splice(0);
+    setStorage("recipes");
   });
 
   // Event Listener: Delete drinks from UI and local storage
   $("#delete-drinks").on("click", function() {
-  $("#saved-drinks-container").empty();
-  savedDrinks.splice(0);
-  setStorage("drinks");
+    $("#saved-drinks-container").empty();
+    savedDrinks.splice(0);
+    setStorage("drinks");
   });
 
   // Event Listener: Saved recipe badge
@@ -550,13 +532,11 @@ function preloadRandomRecipe() {
     getDetails(recipeId, "themealdb");
   });
 
-
   // Event Listener: Saved drink badge
   $("#saved-drinks-container").on("click", ".badge-drink", function() {
     var drinkId = $(this).attr("data-id");
     getDetails(drinkId, "thecocktaildb");
   });
-
 
   // Event Listener: Food Button
   $('.button-left').click(function() {
@@ -582,4 +562,3 @@ function preloadRandomRecipe() {
     $("#sticky-footer").removeClass("bg-success").addClass("bg-info");
   });
 });
-
