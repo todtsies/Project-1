@@ -93,23 +93,33 @@
                   Save Recipe
                 </button>
               </form>
+
+            
   
-              <!-- SAVED RECIPES CONTAINER: COLLAPSIBLE -->
-              <div class="saved-recipes list-group-item-success rounded p-3 mb-3">
-                <div id="saved-recipes-header" data-toggle="collapse" data-target="#saved-recipes-container" aria-expanded="false" aria-controls="saved-recipes-container">
-                  <p class="h5 m-0">
-                  <i id="recipe-arrow" class="fas fa-chevron-down mr-1" data-direction="down"></i>
-                  Saved Recipes
-                  </p>
-                </div>
               
-                <div id="saved-recipes-container" class="collapse mt-3">
-        
-                <!-- SAVED RECIPES DYNAMICALLY INSERTED HERE -->
-    ​
+              <!-- SAVED RECIPES CONTAINER: COLLAPSIBLE -->
+                <div class="saved-recipes list-group-item-success rounded p-3 mb-3">
+                  <div id="saved-recipes-header" data-toggle="collapse" data-target="#saved-recipes" aria-expanded="false" aria-controls="saved-recipes">
+                    <p class="h5 m-0">
+                    <i id="recipe-arrow" class="fas fa-chevron-down mr-1" data-direction="down"></i>
+                    Saved Recipes
+                    </p>
+                  </div>
+                ​
+                  <div id="saved-recipes" class="collapse mt-3">
+                    <div id="saved-recipes-container">
+                      <!-- SAVED RECIPES DYNAMICALLY INSERTED HERE -->
+                    </div>
+                    <hr>
+                    <button id="delete-recipes" class="btn btn-block btn-success my-1">
+                      <i class="fas fa-trash-alt mr-1"></i>
+                      Delete Recipes
+                    </button>
+                  </div>
                 </div>
-              </div>
+    ​          </div>
             </div>
+          </div>
   
             <!-- RECIPE DATA -->
             <div class="col-12 col-md-8 col-xl-9">
@@ -209,19 +219,25 @@
                 </button>
               </form>
   
+              
               <!-- SAVED DRINKS CONTAINER: COLLAPSIBLE -->
               <div class="saved-drinks list-group-item-info rounded p-3 mb-3">
-                <div id="saved-drinks-header" data-toggle="collapse" data-target="#saved-drinks-container" aria-expanded="false" aria-controls="saved-drinks-container">
+                <div id="saved-drinks-header" data-toggle="collapse" data-target="#saved-drinks" aria-expanded="false" aria-controls="saved-drinks">
                   <p class="h5 m-0">
                     <i id="drink-arrow" class="fas fa-chevron-down mr-1" data-direction="down"></i>
                     Saved Drinks
                   </p>
                 </div>
                 
-                <div id="saved-drinks-container" class="collapse mt-3">
-              ​
-                  <!-- SAVED DRINKS DYNAMICALLY INSERTED HERE -->
-              ​
+                <div id="saved-drinks" class="collapse mt-3">
+                  <div id="saved-drinks-container">
+                    <!-- SAVED DRINKS DYNAMICALLY INSERTED HERE -->
+                  </div>
+                  <hr>
+                  <button id="delete-drinks" class="btn btn-block btn-info my-1">
+                    <i class="fas fa-trash-alt mr-1"></i>
+                    Delete Drinks
+                  </button>
                 </div>
               </div>
             </div>
