@@ -58,16 +58,14 @@
               <form class="mb-3 p-3 rounded list-group-item-success">
                 <p class="h5 m-0">Choose an Option:</p>
                 <hr>
-              ​
                 <label for="ingredient-input" class="mb-1">
                   Option 1: Input an Ingredient
                 </label>
                 <input type="text" id="recipe-ingredient" class="form-control mb-3 ingredient"/>
-              ​
+  
                 <label for="category" class="mb-1">
                   Option 2: Select a Category
                 </label>
-                
                 <select id="recipe-categories" class="form-control mb-3 category">
                   <option id="select" value="" selected>
                     Select...
@@ -87,9 +85,7 @@
                   <option id="category-vegan">Vegan</option>
                   <option id="category-vegetarian">Vegetarian</option>
                 </select>
-              ​
                 <hr />
-              ​
                 <button id="search" type="button" class="btn btn-success btn-block search-btn" data-mode="recipes">
                   Get Recipes!
                 </button>
@@ -100,7 +96,7 @@
   
               <!-- SAVED RECIPES CONTAINER: COLLAPSIBLE -->
               <div class="saved-recipes list-group-item-success rounded p-3 mb-3">
-                <div id="saved-recipes-header" class="saved-items" data-toggle="collapse" data-target="#saved-recipes-container" aria-expanded="false" aria-controls="saved-recipes-container">
+                <div id="saved-recipes-header" data-toggle="collapse" data-target="#saved-recipes-container" aria-expanded="false" aria-controls="saved-recipes-container">
                   <p class="h5 m-0">
                   <i id="recipe-arrow" class="fas fa-chevron-down mr-1" data-direction="down"></i>
                   Saved Recipes
@@ -187,20 +183,16 @@
             <!-- DRINKS FORM-->
             <div class="col-12 col-sm-4 col-xl-3">
               <form class="mb-3 p-3 rounded list-group-item-info">
-                <p class="h5 m-0">Choose an Option:</p>
-                <hr>
-              ​
-                <label for="drink-ingredient"i class="mb-1">
+                <label for="ingredient-input" class="mb-1">
                   Option 1: Input a Liquor
                 </label>
                 <input type="text" id="drink-ingredient" class="form-control mb-3 ingredient"/>
-              ​
+  
                 <label for="category" class="mb-1">
                   Option 2: Select a Category
                 </label>
-              ​
                 <select id="drink-categories" class="form-control mb-3 catergory">
-                  <option value="" selected>
+                  <option id="select" value="" selected>
                     Select...
                   </option>
                   <option id="category-ordinary">Ordinary Drink</option>
@@ -208,9 +200,7 @@
                   <option id="category-homemade-liqueur">Homemade Liqueur</option>
                   <option id="category-beer">Beer</option>
                 </select>
-              ​
                 <hr />
-              ​
                 <button id="search" type="button" class="btn btn-info btn-block search-btn" data-mode="drinks">
                   Get Drinks!
                 </button>
@@ -219,7 +209,7 @@
                 </button>
               </form>
   
-               <!-- SAVED DRINKS CONTAINER: COLLAPSIBLE -->
+              <!-- SAVED DRINKS CONTAINER: COLLAPSIBLE -->
               <div class="saved-drinks list-group-item-info rounded p-3 mb-3">
                 <div id="saved-drinks-header" data-toggle="collapse" data-target="#saved-drinks-container" aria-expanded="false" aria-controls="saved-drinks-container">
                   <p class="h5 m-0">

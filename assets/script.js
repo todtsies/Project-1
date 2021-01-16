@@ -430,6 +430,43 @@ $(document).ready(function() {
     }
   });
 
+
+  // Event Listener: Saved recipe arrow
+  $("#saved-recipes-header").on("click", function() {
+    var arrow = $("#recipe-arrow");
+    var direction = arrow.attr("data-direction");
+
+    if (direction === "up") {
+      arrow.removeClass("fa-chevron-up");
+      arrow.addClass("fa-chevron-down");
+      arrow.attr("data-direction", "down");
+
+    } else if (direction === "down") {
+      arrow.removeClass("fa-chevron-down");
+      arrow.addClass("fa-chevron-up");
+      arrow.attr("data-direction", "up");
+    }
+  });
+
+
+  // Event Listener: Saved drinks arrow
+  $("#saved-drinks-header").on("click", function() {
+    var arrow = $("#drink-arrow");
+    var direction = arrow.attr("data-direction");
+
+    if (direction === "up") {
+      arrow.removeClass("fa-chevron-up");
+      arrow.addClass("fa-chevron-down");
+      arrow.attr("data-direction", "down");
+
+    } else if (direction === "down") {
+      arrow.removeClass("fa-chevron-down");
+      arrow.addClass("fa-chevron-up");
+      arrow.attr("data-direction", "up");
+    }
+  });
+
+
   // Event Listeners: Save recipe and save drink buttons
   $("#save-recipe").on("click", saveRecipe);
   $("#save-drink").on("click", saveDrink)
@@ -456,6 +493,7 @@ $(document).ready(function() {
     $(".button-left").css({"background-color": "black", "color": "white"});
     $(".button-right").css({"background-color": "gray", "color": "white"});
   });
+
 
   // Event Listener: Food Button
   $('.button-left').click(function() {
