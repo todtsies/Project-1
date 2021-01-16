@@ -6,6 +6,14 @@ The Foo Bar Finder is an application that utilizes a combination of VS Code, HTM
 
 ### Pictures of Website Application
 
+## Recipe Gif
+
+![Application Preview](assets/Images/recipe-side-demo.gif)
+
+## Drinks Gif
+
+![Application Preview](assets/Images/drink-side-demo.gif)
+
 ### Built With
 
 - VS Code
