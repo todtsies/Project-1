@@ -32,6 +32,6 @@ Project repository link: (https://github.com/todtsies/Project-1)
 
 ## Usage
 
-\*need github io link to site
+https://todtsies.github.io/Project-1/
 
 `https://github.com/todtsies/Project-1`, `Project-1`,
