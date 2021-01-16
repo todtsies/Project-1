@@ -5,13 +5,10 @@ $(document).ready(function() {
   var mode = "recipes";
   var api = "themealdb";
 
-  // Store data from random API calls on startup
-  var randomRecipe;
-  var randomDrink;
 
   // Track indexes of currently displayed recipe and drink
-  var currentRecipe;
-  var currentDrink;
+  var currentRecipe = 0;
+  var currentDrink = 0;
 
   // Recipe and drink ID number arrays
   var recipeIds = [];
@@ -64,8 +61,8 @@ $(document).ready(function() {
       method: "GET"
     }).then(function(response) {
       mode = "recipes";
-      randomRecipe = response;
-      getIngredientList(randomRecipe.meals[0]);
+      recipeIds.push(response.meals[0].idMeal);
+      getIngredientList(response.meals[0]);
 
       // Get random drink
       $.ajax({
@@ -73,8 +70,8 @@ $(document).ready(function() {
         method: "GET"
       }).then(function(response) {
         mode = "drinks";
-        randomDrink = response;
-        getIngredientList(randomDrink.drinks[0]);
+        drinkIds.push(response.drinks[0].idDrink);
+        getIngredientList(response.drinks[0]);
         mode = "recipes";
       })
     });
@@ -131,6 +128,7 @@ $(document).ready(function() {
     });
   }
 
+  
   // Get recipe or drink details by ID number
   function getDetails(id, api) {
     $.ajax({
@@ -331,7 +329,7 @@ $(document).ready(function() {
     badge.addClass("badge badge-success p-2 my-1 mr-1 badge-recipe");
     badge.attr("data-id", recipe.id);
     badge.text(recipe.title);
-    $("#saved-recipes-container").append(badge);
+    $("#saved-recipes-container").prepend(badge);
   }
 
 
@@ -340,7 +338,7 @@ $(document).ready(function() {
     badge.addClass("badge badge-info p-2 my-1 mr-1 badge-drink");
     badge.attr("data-id", drink.id)
     badge.text(drink.title);
-    $("#saved-drinks-container").append(badge);
+    $("#saved-drinks-container").prepend(badge);
   }
 
 
@@ -392,6 +390,7 @@ $(document).ready(function() {
   function setStorage(mode) {
     if (mode === "recipes") {
       localStorage.setItem("recipes", JSON.stringify(savedRecipes));
+
     } else if (mode === "drinks") {
       localStorage.setItem("drinks", JSON.stringify(savedDrinks));
     }
@@ -533,6 +532,22 @@ $(document).ready(function() {
   // Event Listeners: Save recipe and save drink buttons
   $("#save-recipe").on("click", saveRecipe);
   $("#save-drink").on("click", saveDrink);
+
+
+  // Event Listener: Delete recipes from UI and local storage
+  $("#delete-recipes").on("click", function() {
+    $("#saved-recipes-container").empty();
+    savedRecipes.splice(0);
+    setStorage("recipes");
+  });
+
+
+  // Event Listener: Delete drinks from UI and local storage
+  $("#delete-drinks").on("click", function() {
+    $("#saved-drinks-container").empty();
+    savedDrinks.splice(0);
+    setStorage("drinks");
+  });
 
 
   // Event Listener: Saved recipe badge
