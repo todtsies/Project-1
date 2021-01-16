@@ -5,6 +5,7 @@ $(document).ready(function() {
   var mode = "recipes";
   var api = "themealdb";
 
+
   // Track indexes of currently displayed recipe and drink
   var currentRecipe = 0;
   var currentDrink = 0;
@@ -52,8 +53,8 @@ $(document).ready(function() {
 
 
   // Preload a random recipe and drink on startup
-function preloadRandomRecipe() {
-  ​
+  function preloadRandomRecipe() {
+
     // Get random recipe
     $.ajax({
       url: `https://www.themealdb.com/api/json/v2/${apiKey}/random.php`,
@@ -62,7 +63,7 @@ function preloadRandomRecipe() {
       mode = "recipes";
       recipeIds.push(response.meals[0].idMeal);
       getIngredientList(response.meals[0]);
-  ​
+
       // Get random drink
       $.ajax({
         url: `https://www.thecocktaildb.com/api/json/v2/${apiKey}/random.php`,
@@ -127,6 +128,7 @@ function preloadRandomRecipe() {
     });
   }
 
+  
   // Get recipe or drink details by ID number
   function getDetails(id, api) {
     $.ajax({
@@ -327,7 +329,7 @@ function preloadRandomRecipe() {
     badge.addClass("badge badge-success p-2 my-1 mr-1 badge-recipe");
     badge.attr("data-id", recipe.id);
     badge.text(recipe.title);
-    $("#saved-recipes-container").append(badge);
+    $("#saved-recipes-container").prepend(badge);
   }
 
 
@@ -336,7 +338,7 @@ function preloadRandomRecipe() {
     badge.addClass("badge badge-info p-2 my-1 mr-1 badge-drink");
     badge.attr("data-id", drink.id)
     badge.text(drink.title);
-    $("#saved-drinks-container").append(badge);
+    $("#saved-drinks-container").prepend(badge);
   }
 
 
@@ -388,6 +390,7 @@ function preloadRandomRecipe() {
   function setStorage(mode) {
     if (mode === "recipes") {
       localStorage.setItem("recipes", JSON.stringify(savedRecipes));
+
     } else if (mode === "drinks") {
       localStorage.setItem("drinks", JSON.stringify(savedDrinks));
     }
@@ -530,19 +533,22 @@ function preloadRandomRecipe() {
   $("#save-recipe").on("click", saveRecipe);
   $("#save-drink").on("click", saveDrink);
 
+
   // Event Listener: Delete recipes from UI and local storage
   $("#delete-recipes").on("click", function() {
-  $("#saved-recipes-container").empty();
-  savedRecipes.splice(0);
-  setStorage("recipes");
+    $("#saved-recipes-container").empty();
+    savedRecipes.splice(0);
+    setStorage("recipes");
   });
+
 
   // Event Listener: Delete drinks from UI and local storage
   $("#delete-drinks").on("click", function() {
-  $("#saved-drinks-container").empty();
-  savedDrinks.splice(0);
-  setStorage("drinks");
+    $("#saved-drinks-container").empty();
+    savedDrinks.splice(0);
+    setStorage("drinks");
   });
+
 
   // Event Listener: Saved recipe badge
   $("#saved-recipes-container").on("click", ".badge-recipe", function() {
@@ -582,4 +588,3 @@ function preloadRandomRecipe() {
     $("#sticky-footer").removeClass("bg-success").addClass("bg-info");
   });
 });
-
