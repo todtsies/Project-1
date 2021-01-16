@@ -537,6 +537,13 @@ function preloadRandomRecipe() {
   setStorage("recipes");
   });
 
+  // Event Listener: Delete drinks from UI and local storage
+  $("#delete-drinks").on("click", function() {
+  $("#saved-drinks-container").empty();
+  savedDrinks.splice(0);
+  setStorage("drinks");
+  });
+
   // Event Listener: Saved recipe badge
   $("#saved-recipes-container").on("click", ".badge-recipe", function() {
     var recipeId = $(this).attr("data-id");
