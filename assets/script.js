@@ -426,9 +426,11 @@ $(document).ready(function() {
     
     } else if (!ingredient && !category) {
       console.log("Invalid input.");
+      return;
 
     } else if (ingredient && category) {
       console.log("Please choose one input only.");
+      return;
     }
 
     // Get recipe/drink data from API
