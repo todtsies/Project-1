@@ -530,6 +530,12 @@ function preloadRandomRecipe() {
   $("#save-recipe").on("click", saveRecipe);
   $("#save-drink").on("click", saveDrink);
 
+  // Event Listener: Delete recipes from UI and local storage
+  $("#delete-recipes").on("click", function() {
+  $("#saved-recipes-container").empty();
+  savedRecipes.splice(0);
+  setStorage("recipes");
+  });
 
   // Event Listener: Saved recipe badge
   $("#saved-recipes-container").on("click", ".badge-recipe", function() {
