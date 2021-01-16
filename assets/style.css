@@ -19,3 +19,8 @@ body {
     position: static;
     margin-top: -30px;
   }
+
+  .cycle-forward,
+  .cycle-backward {
+    cursor: pointer;
+  }
