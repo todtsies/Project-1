@@ -22,6 +22,65 @@ $(document).ready(function() {
   var savedDrinks = [];
 
 
+  // Initialize app
+  init();
+
+
+  // Startup function
+  function init() {
+
+    // Show recipes side + hide drinks side
+    $("#food-side").show();
+    $("#drinks-side").hide();
+    
+    // Set button colors
+    $(".button-left").css({"background-color": "black", "color": "white"});
+    $(".button-right").css({"background-color": "gray", "color": "white"});
+
+    // Load random recipe and drink on startup
+    preloadRandomRecipe();
+
+    // Get items saved to local storage (if any)
+    getStorage();
+
+    // Display recipes from local storage UI
+    $.each(savedRecipes, function(i, recipe) {
+      displaySavedRecipes(recipe);
+    });
+
+    // Display drinks from local storage in UI
+    $.each(savedDrinks, function(i, drink) {
+      displaySavedDrinks(drink);
+    });
+  }
+
+
+  // Preload a random recipe and drink on startup
+  function preloadRandomRecipe() {
+
+    // Get random recipe
+    $.ajax({
+      url: `https://www.themealdb.com/api/json/v2/${apiKey}/random.php`,
+      method: "GET"
+    }).then(function(response) {
+      mode = "recipes";
+      randomRecipe = response;
+      getIngredientList(randomRecipe.meals[0]);
+
+      // Get random drink
+      $.ajax({
+        url: `https://www.thecocktaildb.com/api/json/v2/${apiKey}/random.php`,
+        method: "GET"
+      }).then(function(response) {
+        mode = "drinks";
+        randomDrink = response;
+        getIngredientList(randomDrink.drinks[0]);
+        mode = "recipes";
+      })
+    });
+  }
+
+
   // Get recipe/drink data from APIs
   function getRecipes(api, query, userInput) {
 
@@ -285,10 +344,11 @@ $(document).ready(function() {
   }
 
 
+  // Save recipe to local storage
   function saveRecipe() {
     var recipe = {
       id: recipeIds[currentRecipe],
-      title: $("#title").text()
+      title: $("#recipe-title").text()
     }
 
     displaySavedRecipes(recipe);
@@ -298,6 +358,7 @@ $(document).ready(function() {
   }
 
 
+  // Save drink to local storage
   function saveDrink() {
     var drink = {
       id: drinkIds[currentDrink],
@@ -469,29 +530,20 @@ $(document).ready(function() {
 
   // Event Listeners: Save recipe and save drink buttons
   $("#save-recipe").on("click", saveRecipe);
-  $("#save-drink").on("click", saveDrink)
+  $("#save-drink").on("click", saveDrink);
 
 
   // Event Listener: Saved recipe badge
-  $(".badge-recipe").on("click", function() {
+  $("#saved-recipes-container").on("click", ".badge-recipe", function() {
     var recipeId = $(this).attr("data-id");
     getDetails(recipeId, "themealdb");
   });
 
 
   // Event Listener: Saved drink badge
-  $(".badge-drink").on("click", function() {
+  $("#saved-drinks-container").on("click", ".badge-drink", function() {
     var drinkId = $(this).attr("data-id");
     getDetails(drinkId, "thecocktaildb");
-  });
-
-
-  // Event Listeners: Food/Drink Buttons in top right corner
-  $(".button-left").ready(function() {
-    $("#food-side").show();
-    $("#drinks-side").hide();
-    $(".button-left").css({"background-color": "black", "color": "white"});
-    $(".button-right").css({"background-color": "gray", "color": "white"});
   });
 
 
