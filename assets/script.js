@@ -588,4 +588,3 @@ $(document).ready(function() {
     $("#sticky-footer").removeClass("bg-success").addClass("bg-info");
   });
 });
-
