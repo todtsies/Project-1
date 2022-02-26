@@ -24,7 +24,7 @@ The Foo Bar Finder is an application that utilizes a combination of VS Code, HTM
 - Javascript
 - Jquery
 - TheMealDB API (https://www.themealdb.com/api.php)
-- TheCocktailDB API (https://www.thecocktaildb.com/api.php)
+- TheCocktailDB API (https://www.thecocktaildb.com/api.php) UPDATE 2/23/2022 - This subscription has run out. Meaning this side of the application will no longer populate the cocktail recipes. Sorry :-(
 
 <!-- CONTACT -->
 
